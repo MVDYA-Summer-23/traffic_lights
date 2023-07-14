@@ -14,9 +14,7 @@ defmodule TrafficLights.Light do
   @doc """
   Retrieve the current light state
   """
-  def current_light(pid) do
-    GenServer.call(pid, :current_light)
-  end
+  def current_light(pid), do: GenServer.call(pid, :current_light)
 
   @doc """
   Transition the light to the next phase

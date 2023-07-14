@@ -35,7 +35,13 @@ defmodule TrafficLights.Grid do
     max_lights = Map.keys(lights) |> length()
     current_light_pid = Map.get(lights, current_index)
     Light.transition(current_light_pid)
-    next_light = if current_index == max_lights, do: 1, else: current_index + 1
+
+    next_light =
+      case current_index do
+        ^max_lights -> 1
+        _ -> current_index + 1
+      end
+
     {:noreply, %{state | current_light: next_light}}
   end
 end
